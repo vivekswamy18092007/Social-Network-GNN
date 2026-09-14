@@ -23,15 +23,13 @@ instance-norm layer, MLP, Adam optimizer and BCE loss are all written by
 hand in `src/nn.py` with manual forward/backward passes instead of
 autograd. Slower to write, but it works and doesn't need a GPU. If you have
 torch available, `GCNLayer` maps directly onto `torch_geometric.nn.GCNConv`
-and the rest onto standard `torch.nn` modules — the architecture doesn't
-change, just the backend.
+and the rest onto standard `torch.nn` modules 
 
 **Synthetic data instead of OAG/Digg/Weibo.** Couldn't get the real DeepInf
 datasets in time either, so this generates a scale-free graph (Barabási–
 Albert) and runs an independent-cascade simulation on top of it to get
 activation times, which double as the action labels. The problem statement
-lists this as one of the two valid dataset options, so it's not really a
-shortcut. Swapping in the real dataset later only touches `src/data.py`.
+lists this as one of the two valid dataset options. Swapping in the real dataset later only touches `src/data.py`.
 
 **DeepWalk baseline is NetMF, not literal skip-gram.** Same embedding
 objective as DeepWalk (Perozzi et al.), computed via matrix factorization
